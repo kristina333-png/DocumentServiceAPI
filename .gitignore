@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Django
+*.log
+*.pot
+*.pyc
+# /migrations/*.py
+# !/migrations/__init__.py
+local_settings.py
+
+# PostgreSQL
+*.sql
+*.sql.gz
+*.dump
+*.backup
+pg_backup/
+*.pgdump
+postgresql.conf.local
+pg_hba.conf.local
+
+# Переменные окружения
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+
+# Виртуальное окружение
+venv/
+env/
+ENV/
+.venv/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Статика и медиа
+/staticfiles/
+/static_collected/
+/media/
+/mediafiles/
+/uploaded/
+
+# Логи
+logs/
+debug.log
+django.log
