@@ -1,5 +1,4 @@
 from typing import Optional, Tuple
-
 from rest_framework import authentication
 from rest_framework import exceptions
 from .models import ExternalSystem
@@ -7,11 +6,11 @@ from .models import ExternalSystem
 
 class APIKeyAuthentication(authentication.BaseAuthentication):
     """
-       Аутентификация внешних систем по API-ключу.
-       Ключ передаётся в заголовке X-API-Key.
-       """
-    def authenticate(self, request) -> Optional[Tuple[ExternalSystem, None]]:
+    Аутентификация внешних систем по API-ключу.
+    Ключ передаётся в заголовке X-API-Key.
+    """
 
+    def authenticate(self, request) -> Optional[Tuple[ExternalSystem, None]]:
         api_key = request.headers.get('X-API-Key')
 
         if not api_key:
@@ -22,4 +21,10 @@ class APIKeyAuthentication(authentication.BaseAuthentication):
         except ExternalSystem.DoesNotExist:
             raise exceptions.AuthenticationFailed('Неверный API ключ')
 
+        external_system.is_authenticated = True
+        external_system.is_active = True
+
         return (external_system, None)
+
+    def authenticate_header(self, request):
+        return 'X-API-Key'
