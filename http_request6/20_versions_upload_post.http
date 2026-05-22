@@ -1,0 +1,28 @@
+### ============================================
+### Загрузить новую версию документа
+### Назначение: загрузить файл и создать новую версию
+### Доступ: только администратор
+###
+### Правила:
+###   - новая версия получает статус "draft" (черновик)
+###   - номер версии = максимальный номер + 1
+###   - файл переименовывается: document_{id}_v{номер}.{расширение}
+### ============================================
+### Побочный эффект: текущая активная версия не меняется
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@documentId = 1
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+POST {{baseUrl}}/api/versions/upload/{{documentId}}/
+Authorization: Basic {{adminBasicAuth}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+Accept: application/json
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="document.pdf"
+Content-Type: application/pdf
+
+< ./document.pdf
+------WebKitFormBoundary--

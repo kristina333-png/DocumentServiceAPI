@@ -1,0 +1,30 @@
+### ============================================
+### Создать новый документ
+### Назначение: создать карточку документа (без файла)
+### Доступ: только администратор
+### Правило: title и description обязательны
+### ============================================
+### Параметры:
+###   - title: строка, название документа
+###   - description: строка, описание
+###   - document_type: "regulation" или "methodological_recommendations"
+###   - is_common: true/false (по умолчанию false)
+### ============================================
+### После успешного ответа:
+###   сохраните id документа для следующих запросов
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+POST {{baseUrl}}/api/documents/
+Authorization: Basic {{adminBasicAuth}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "title": "Регламент работы с документами",
+    "description": "Основной регламент по работе с документацией в системе",
+    "document_type": "regulation",
+    "is_common": true
+}

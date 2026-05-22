@@ -1,0 +1,20 @@
+### ============================================
+### Обновить документ
+### Назначение: изменить поля документа
+### Доступ: только администратор
+### Правило: можно обновить не все поля, только переданные
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@documentId = 1
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+PUT {{baseUrl}}/api/documents/{{documentId}}/
+Authorization: Basic {{adminBasicAuth}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "title": "Регламент (обновлённая версия)",
+    "description": "Обновлённое описание регламента"
+}

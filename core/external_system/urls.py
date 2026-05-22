@@ -7,4 +7,8 @@ urlpatterns = [
 
     # Скачивание файла
     path('download/<int:version_id>/', views.DownloadVersionView.as_view(), name='download-version'),
+
+    path('access/grant/', views.GrantAccessView.as_view(), name='grant-access'),
+
+    path('access/revoke/', views.RevokeAccessView.as_view(), name='revoke-access'),
 ]

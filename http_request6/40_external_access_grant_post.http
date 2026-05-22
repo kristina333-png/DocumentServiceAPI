@@ -1,0 +1,20 @@
+### ============================================
+### Выдать доступ внешней системе
+### Назначение: дать доступ системе к документу (для is_common=false)
+### Доступ: только администратор
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@documentId = 1
+@externalSystemId = 1
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+POST {{baseUrl}}/api/external/access/grant/
+Authorization: Basic {{adminBasicAuth}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "document_id": {{documentId}},
+    "external_system_id": {{externalSystemId}}
+}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class DocumentVersion(models.Model):
@@ -42,9 +43,10 @@ class DocumentVersion(models.Model):
         verbose_name="Дата загрузки"
     )
     uploaded_by = models.ForeignKey(
-         'audit_log.AuditLog',
-         on_delete=models.SET_NULL,
-         null=True,
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         verbose_name="Пользователь, загрузивший версию"
     )
 
@@ -54,6 +56,6 @@ class DocumentVersion(models.Model):
         unique_together = [['document', 'version_number']]
         ordering = ['-version_number']
 
-    def __str__(self)-> str:
+    def __str__(self) -> str:
         return f"{self.document.title} - v{self.version_number}"
 

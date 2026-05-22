@@ -5,6 +5,7 @@ from .views import (
     ActiveVersionView,
     VersionPublishView,
     VersionRollbackView,
+    VersionHistoryView,
 )
 
 urlpatterns = [
@@ -22,4 +23,7 @@ urlpatterns = [
 
     # Откат версии (POST)
     path('<int:version_id>/rollback/', VersionRollbackView.as_view(), name='version-rollback'),
+
+    # Получение истори изменения статусов версии(GET)
+    path('<int:version_id>/history/', VersionHistoryView.as_view(), name='version-history'),
 ]

@@ -14,7 +14,7 @@ class GetAvailableDocuments(BaseService):
     def __init__(self, external_system):
         self.external_system = external_system
 
-    def _execute(self)-> List[DocumentVersion]:
+    def _execute(self) -> List[DocumentVersion]:
         common_documents = Document.objects.filter(is_common=True)
         accessed_documents = Document.objects.filter(
             allowed_systems__external_system=self.external_system
@@ -31,7 +31,6 @@ class GetAvailableDocuments(BaseService):
                 )
                 active_versions.append(active_version)
             except DocumentVersion.DoesNotExist:
-
                 continue
 
         return active_versions

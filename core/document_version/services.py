@@ -17,12 +17,11 @@ class VersionCreate(BaseService):
         self.file = file
         self.uploaded_by = uploaded_by
 
-    def _execute(self)-> DocumentVersion:
+    def _execute(self) -> DocumentVersion:
         try:
             document = Document.objects.get(id=self.document_id)
         except Document.DoesNotExist:
             raise ValidationError(f"Документ с id {self.document_id} не найден")
-
 
         if not self.file:
             raise ValidationError("Файл обязателен")
@@ -33,14 +32,11 @@ class VersionCreate(BaseService):
 
         new_version_number = (max_version or 0) + 1
 
-
         file_extension = os.path.splitext(self.file.name)[1]
         new_file_name = f"document_{self.document_id}_v{new_version_number}{file_extension}"
         file_path = f"versions/{new_file_name}"
 
-
         saved_path = default_storage.save(file_path, ContentFile(self.file.read()))
-
 
         version = DocumentVersion.objects.create(
             document=document,
@@ -48,7 +44,7 @@ class VersionCreate(BaseService):
             file_path=saved_path,
             file_name=self.file.name,
             status=DocumentVersion.StatusVersion.DRAFT,
-            uploaded_by=None
+            uploaded_by=self.uploaded_by
         )
 
         return version

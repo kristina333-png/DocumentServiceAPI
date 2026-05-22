@@ -1,0 +1,14 @@
+### ============================================
+### Удалить документ
+### Назначение: удалить документ
+### Доступ: только администратор
+### Правило: нельзя удалить документ, у которого есть версии
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@documentId = 1
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+DELETE {{baseUrl}}/api/documents/{{documentId}}/
+Authorization: Basic {{adminBasicAuth}}
+Accept: application/json

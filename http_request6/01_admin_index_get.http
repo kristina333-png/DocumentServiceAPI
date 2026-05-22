@@ -1,0 +1,13 @@
+### ============================================
+### Админка Django
+### Назначение: открыть панель администратора
+### Доступ: только администратор (admin / admin123)
+### Ожидаемый ответ: HTML страница админки
+### ============================================
+
+@baseUrl = http://127.0.0.1:8000
+@adminBasicAuth = YWRtaW46YWRtaW4xMjM=
+
+GET {{baseUrl}}/admin/
+Authorization: Basic {{adminBasicAuth}}
+Accept: text/html
